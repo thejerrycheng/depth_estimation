@@ -31,10 +31,10 @@ title('3D Point Cloud Visualization');
 
 ptCloud = pointCloud(point_cloud);  % Convert to pointCloud object
 
-maxDistance = 1;  % Maximum distance of points to plane for them to be considered inliers
-% referenceVector = [0, 0, 1];  % A reference vector to guide the orientation of the plane
+maxDistance = 2;  % Maximum distance of points to plane for them to be considered inliers
+% referenceVector = [0, -0.2, 1];  % A reference vector to guide the orientation of the plane
 
-numPlanes = 10;  % Number of planes to fit
+numPlanes = 5;  % Number of planes to fit
 planes = cell(numPlanes, 1);  % Cell array to store plane models
 numFittedPlanes = 0;
 
@@ -79,6 +79,7 @@ while numFittedPlanes < numPlanes
        
         % Now select the remaining points
         ptCloud = select(ptCloud, remainingIndices);  % This should match the size of the point cloud
+        
     end
 end
 
@@ -93,8 +94,7 @@ hold on;
 for i = 1:length(planes)
     model = planes{i};
     plot(model)
-    % You can plot the plane model using `plot(model)` or other visualization techniques
-    % This might involve creating a meshgrid and evaluating the plane equation
+    
 end
 
 xlabel('X');
@@ -102,3 +102,22 @@ ylabel('Y');
 zlabel('Z');
 title('Point Cloud with Fitted Planes');
 hold off;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
